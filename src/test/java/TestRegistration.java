@@ -41,7 +41,7 @@ public class TestRegistration {
         driver.get(MAIN_PAGE);
         mainPage.clickPersonalAccountButton();
         assertEquals(loginPage.getURL(), driver.getCurrentUrl());
-        loginPage.clickRegNewUserButton();
+        loginPage.clickRegNewUserLink();
         assertEquals(regPage.getURL(), driver.getCurrentUrl());
         regPage.fillRegistrationForm(user);
         regPage.clickRegistrationButton();
@@ -56,7 +56,7 @@ public class TestRegistration {
         driver.get(MAIN_PAGE);
         mainPage.clickPersonalAccountButton();
         assertEquals(loginPage.getURL(), driver.getCurrentUrl());
-        loginPage.clickRegNewUserButton();
+        loginPage.clickRegNewUserLink();
         assertEquals(regPage.getURL(), driver.getCurrentUrl());
         regPage.fillRegistrationForm(user);
         regPage.clickRegistrationButton();

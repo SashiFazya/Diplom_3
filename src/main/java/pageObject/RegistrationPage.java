@@ -27,6 +27,7 @@ public class RegistrationPage {
     private By inputFieldPassword = By.xpath(".//label[text()='Пароль']/following-sibling::input");
     private By inputPassErrorText = By.xpath(".//label[text()='Пароль']/../../p");
     private By registrationButton = By.xpath(".//button[text()='Зарегистрироваться']");
+    private By alreadyRegistratedEntranceButton = By.className("Auth_link__1fOlj");
 
     public boolean checkRegistrationFormAppears() {
         return driver.findElement(registrationFormLabel).isDisplayed();
@@ -36,6 +37,10 @@ public class RegistrationPage {
         driver.findElement(inputFieldName).sendKeys(user.getName());
         driver.findElement(inputFieldEmail).sendKeys(user.getEmail());
         driver.findElement(inputFieldPassword).sendKeys(user.getPassword());
+    }
+
+    public void clickAlreadyRegistratedEntranceButton() {
+        driver.findElement(alreadyRegistratedEntranceButton).click();
     }
 
     public void clickRegistrationButton() {

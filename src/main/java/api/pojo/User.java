@@ -1,11 +1,11 @@
 package api.pojo;
 
 public class User {
-    private String name;
     private String email;
     private String password;
+    private String name;
 
-    public User(String name, String email, String password) {
+    public User(String email, String password, String name) {
         this.name = name;
         this.email = email;
         this.password = password;

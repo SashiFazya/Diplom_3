@@ -1,5 +1,6 @@
 package pageObject;
 
+import api.pojo.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,15 +20,21 @@ public class LoginPage {
     }
     private By regNewUserLink = By.xpath(".//*[@href='/register']");
 
-    private By footerRegisterOffer = By.xpath(".//*[contains(text(), 'новый пользователь?')]");
+    private By footerRegisterOfferLink = By.xpath(".//a[text()='Зарегистрироваться']");
+    private By footerRestorePasswordLink = By.xpath(".//a[text()='Восстановить пароль']");
     private By inputFieldEmail = By.xpath(".//label[text()='Email']/following-sibling::input");
     private By inputFieldPassword = By.xpath(".//label[text()='Пароль']/following-sibling::input");
     private By loginFormLabel = By.xpath(".//h2[text()='Вход']");
     private By entranceButton = By.xpath(".//button[text()='Войти']");
 
-    public void clickRegNewUserButton() {
-        new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOfElementLocated(footerRegisterOffer));
+    public void clickRegNewUserLink() {
+      //  new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOfElementLocated(footerRegisterOfferLink));
         driver.findElement(regNewUserLink).click();
+    }
+
+    public void clickRestorePasswordLink() {
+      //  new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOfElementLocated(footerRestorePasswordLink));
+        driver.findElement(footerRestorePasswordLink).click();
     }
 
     public boolean checkLoginFormAppears() {
@@ -35,9 +42,9 @@ public class LoginPage {
         return driver.findElement(loginFormLabel).isDisplayed();
     }
 
-    public void fillLoginForm(String email, String password) {
-        driver.findElement(inputFieldEmail).sendKeys(email);
-        driver.findElement(inputFieldPassword).sendKeys(password);
+    public void fillLoginForm(User user) {
+        driver.findElement(inputFieldEmail).sendKeys(user.getEmail());
+        driver.findElement(inputFieldPassword).sendKeys(user.getPassword());
     }
 
     public void clickEntranceButton() {
