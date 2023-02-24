@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static utils.PageURL.LOGIN_PAGE;
+import static utils.PageURL.MAIN_PAGE;
 
 public class LoginPage {
     private WebDriver driver;
@@ -50,4 +51,5 @@ public class LoginPage {
     public void clickEntranceButton() {
         driver.findElement(entranceButton).click();
     }
+
 }

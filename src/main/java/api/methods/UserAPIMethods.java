@@ -3,12 +3,9 @@ package api.methods;
 import api.pojo.LoginData;
 import api.pojo.User;
 import com.github.javafaker.Faker;
-import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
-import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
-import static org.apache.http.HttpStatus.SC_CREATED;
 import static org.apache.http.HttpStatus.SC_OK;
 
 public class UserAPIMethods {
@@ -21,13 +18,6 @@ public class UserAPIMethods {
     private static final String DELETE_USER_URL = "/api/auth/user";
     private static final String LOGIN_USER_URL = "/api/auth/login";
     private static final String BASE_URL = "https://stellarburgers.nomoreparties.site";
-
-    protected static RequestSpecification getSpec() {
-        return new RequestSpecBuilder()
-                .setContentType(ContentType.JSON)
-                .setBaseUri(BASE_URL)
-                .build();
-    }
 
     public static User randomUser() {
         password = faker.internet().password(true);
