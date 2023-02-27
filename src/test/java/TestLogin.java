@@ -16,55 +16,55 @@ public class TestLogin extends BaseTest{
     @DisplayName("вход по кнопке «Войти в аккаунт» на главной")
     public void checkMainPageLogin() {
         mainPage.clickProfileEntranceButton();
-        assertEquals(loginPage.getURL(), driver.getCurrentUrl());
+        loginPage.checkLoginFormAppears();
         loginPage.fillLoginForm(user);
         loginPage.clickEntranceButton();
-        assertEquals(mainPage.getURL(), driver.getCurrentUrl());
+        mainPage.checkConstructBurgerFormAppears();
         //проверим, что юзер действительно авторизован
-        mainPage.clickPersonalAccountButton();
+        header.clickPersonalAccountButton();
         assertEquals(profilePage.getURL(), driver.getCurrentUrl());
     }
 
     @Test
     @DisplayName("вход через кнопку «Личный кабинет»")
     public void checkPersonalAccountPageLogin() {
-        mainPage.clickPersonalAccountButton();
-        assertEquals(loginPage.getURL(), driver.getCurrentUrl());
+        header.clickPersonalAccountButton();
+        loginPage.checkLoginFormAppears();
         loginPage.fillLoginForm(user);
         loginPage.clickEntranceButton();
-        assertEquals(mainPage.getURL(), driver.getCurrentUrl());
+        mainPage.checkConstructBurgerFormAppears();
         //проверим, что юзер действительно авторизован
-        mainPage.clickPersonalAccountButton();
+        header.clickPersonalAccountButton();
         assertEquals(profilePage.getURL(), driver.getCurrentUrl());
     }
 
     @Test
     @DisplayName("вход через кнопку в форме регистрации")
     public void checkRegistrationPageLogin() {
-        mainPage.clickPersonalAccountButton();
+        header.clickPersonalAccountButton();
         loginPage.clickRegNewUserLink();
         regPage.clickAlreadyRegistratedEntranceButton();
-        assertEquals(loginPage.getURL(), driver.getCurrentUrl());
+        loginPage.checkLoginFormAppears();
         loginPage.fillLoginForm(user);
         loginPage.clickEntranceButton();
-        assertEquals(mainPage.getURL(), driver.getCurrentUrl());
+        mainPage.checkConstructBurgerFormAppears();
         //проверим, что юзер действительно авторизован
-        mainPage.clickPersonalAccountButton();
+        header.clickPersonalAccountButton();
         assertEquals(profilePage.getURL(), driver.getCurrentUrl());
     }
 
     @Test
     @DisplayName("вход через кнопку в форме восстановления пароля")
     public void checkRestorePasswordPageLogin() {
-        mainPage.clickPersonalAccountButton();
+        header.clickPersonalAccountButton();
         loginPage.clickRestorePasswordLink();
         forgotPasswordPage.clickRememberPassLink();
-        assertEquals(loginPage.getURL(), driver.getCurrentUrl());
+        loginPage.checkLoginFormAppears();
         loginPage.fillLoginForm(user);
         loginPage.clickEntranceButton();
-        assertEquals(mainPage.getURL(), driver.getCurrentUrl());
+        mainPage.checkConstructBurgerFormAppears();
         //проверим, что юзер действительно авторизован
-        mainPage.clickPersonalAccountButton();
+        header.clickPersonalAccountButton();
         assertEquals(profilePage.getURL(), driver.getCurrentUrl());
     }
 

@@ -1,5 +1,6 @@
-package pageObject;
+package pageоbject;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,10 +18,16 @@ public class ProfilePage {
     }
 
     public String getURL() {
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOfElementLocated(profilePageDescription));
+        waitForLoadingProfilePage();
         return PROFILE_PAGE;
     }
 
+    @Step("Дождаться загрузки личного кабинета")
+    public void waitForLoadingProfilePage(){
+        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOfElementLocated(profilePageDescription));
+    }
+
+    @Step("Кликнуть на кнопку Выйти в Личном кабинете")
     public void clickProfileLogoutButton() {
         driver.findElement(profileLogoutButton).click();
     }

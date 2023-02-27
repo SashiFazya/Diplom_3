@@ -1,11 +1,9 @@
-package pageObject;
+package pageоbject;
 
-import com.github.javafaker.Faker;
+import api.pojo.User;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import api.pojo.User;
-
-import java.util.List;
 
 import static utils.PageURL.REGISTRATION_PAGE;
 
@@ -33,6 +31,7 @@ public class RegistrationPage {
         return driver.findElement(registrationFormLabel).isDisplayed();
     }
 
+    @Step("Заполнить данные пользователя на экране регистрации {user.email}")
     public void fillRegistrationForm(User user) {
         driver.findElement(inputFieldName).sendKeys(user.getName());
         driver.findElement(inputFieldEmail).sendKeys(user.getEmail());
@@ -43,18 +42,14 @@ public class RegistrationPage {
         driver.findElement(alreadyRegistratedEntranceButton).click();
     }
 
+    @Step("Кликнуть на кнопку Уже зарегистрированы? Войти")
     public void clickRegistrationButton() {
         driver.findElement(registrationButton).click();
     }
-    public String checkWrongPassAlert(){
+
+    @Step("Получить текст ошибки на странице регистрации")
+    public String checkWrongPassAlert() {
         return driver.findElement(inputPassErrorText).getText();
     }
-    public List<String> generateUserData() {
-        Faker faker = new Faker();
 
-        String password = faker.internet().password(true);
-        String name = faker.name().username();
-        String email = name + (int) (Math.random() * 1000) + "@yandex.ru";
-        return List.of(name, email, password);
-    }
 }

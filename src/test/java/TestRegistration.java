@@ -3,16 +3,15 @@ import org.junit.After;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static utils.PageURL.MAIN_PAGE;
 
 public class TestRegistration extends BaseTest{
     @Test
     @DisplayName("Успешная регистрация")
     public void checkRegistrationSuccess() {
-        mainPage.clickPersonalAccountButton();
-        assertEquals(loginPage.getURL(), driver.getCurrentUrl());
+        header.clickPersonalAccountButton();
+        loginPage.checkLoginFormAppears();
         loginPage.clickRegNewUserLink();
-        assertEquals(regPage.getURL(), driver.getCurrentUrl());
+        regPage.checkRegistrationFormAppears();
         regPage.fillRegistrationForm(user);
         regPage.clickRegistrationButton();
         assertEquals("User не зарегистрирован", loginPage.getURL(), driver.getCurrentUrl());
@@ -23,10 +22,10 @@ public class TestRegistration extends BaseTest{
     public void checkRegistrationFailShortPassword() {
         user.setPassword("pass");
 
-        mainPage.clickPersonalAccountButton();
-        assertEquals(loginPage.getURL(), driver.getCurrentUrl());
+        header.clickPersonalAccountButton();
+        loginPage.checkLoginFormAppears();
         loginPage.clickRegNewUserLink();
-        assertEquals(regPage.getURL(), driver.getCurrentUrl());
+        regPage.checkRegistrationFormAppears();
         regPage.fillRegistrationForm(user);
         regPage.clickRegistrationButton();
         assertEquals(regPage.getURL(), driver.getCurrentUrl());

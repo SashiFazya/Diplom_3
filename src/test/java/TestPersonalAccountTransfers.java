@@ -26,7 +26,7 @@ public class TestPersonalAccountTransfers extends BaseTest {
     @Test
     @DisplayName("Проверка перехода по клику на «Личный кабинет»")
     public void checkTransferClickPersonalAccountButton() {
-        mainPage.clickPersonalAccountButton();
+        header.clickPersonalAccountButton();
         assertEquals(profilePage.getURL(), driver.getCurrentUrl());
     }
 
@@ -34,8 +34,8 @@ public class TestPersonalAccountTransfers extends BaseTest {
     @DisplayName("Переход из личного кабинета в конструктор:" +
             "по клику на «Конструктор»")
     public void checkTransferClickConstructorButton() {
-        mainPage.clickPersonalAccountButton();
-        assertEquals(profilePage.getURL(), driver.getCurrentUrl());
+        header.clickPersonalAccountButton();
+        profilePage.waitForLoadingProfilePage();
         header.clickConstructorButton();
         assertEquals(mainPage.getURL(), driver.getCurrentUrl());
     }
@@ -44,17 +44,17 @@ public class TestPersonalAccountTransfers extends BaseTest {
     @DisplayName("Переход из личного кабинета в конструктор:" +
             "по клику на логотип Stellar Burgers")
     public void checkTransferClickBurgerLogo() {
-        mainPage.clickPersonalAccountButton();
-        assertEquals(profilePage.getURL(), driver.getCurrentUrl());
+        header.clickPersonalAccountButton();
+        profilePage.waitForLoadingProfilePage();
         header.clickBurgerLogo();
         assertEquals(mainPage.getURL(), driver.getCurrentUrl());
     }
 
     @Test
     @DisplayName("Выход по кнопке «Выйти» в личном кабинете")
-    public void checkLogout() {
-        mainPage.clickPersonalAccountButton();
-        assertEquals(profilePage.getURL(), driver.getCurrentUrl());
+    public void checkLogout(){
+        header.clickPersonalAccountButton();
+        profilePage.waitForLoadingProfilePage();
         profilePage.clickProfileLogoutButton();
         assertEquals(loginPage.getURL(), driver.getCurrentUrl());
     }
